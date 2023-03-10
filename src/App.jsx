@@ -1,27 +1,34 @@
-import React from "react";
+import React, { Suspense, useEffect } from "react";
 import {
   OrbitControls,
   PerspectiveCamera,
-  Enviroment
-} from "@react-three/drei"
+  Environment,
+} from "@react-three/drei";
+import { useThree } from "@react-three/fiber";
 
-function App(){
+function App() {
+  const state = useThree();
+  
+  useEffect(() => {
+    state.gl.toneMappingExposure = 5;
+  }, [state.gl]);
+
   return (
     <>
-    <Enviroment 
-    background={"only"}
-    files={"/assets/textures/envmap_blur_hdr"}
-    ground={{ height: 100, radius: 300}}
-    />
-    <Enviroment 
-    background={false}
-    files={"/assets/textures.envmap.hdr"}
-    />
+      <Environment
+        background={"only"}
+        files={"/assets/textures/envmap_blur.hdr"}
+        ground={{ height: 100, radius: 300 }}
+      />
+      <Environment
+        background={false}
+        files={"/assets/textures/envmap.hdr"} 
+      />
 
-    <PerspectiveCamera makeDefault fov={33} position={[-0,09, 16.01, -27.9]}/>
-    <OrbitControls target={[0.304, 0.806, 0.427]} maxPolarAngle={Math.PI * 0.45}/>
+      <PerspectiveCamera makeDefault fov={33} position={[-0.09, 16.01, -27.9]} />
+      <OrbitControls target={[0.304, 0.806, 0.427]} maxPolarAngle={Math.PI * 0.45} />
     </>
   );
 }
 
-export default App; 
+export default App;
