@@ -4,6 +4,7 @@ import {
   PerspectiveCamera,
   Environment,
 } from "@react-three/drei";
+import Scene from "./Scene";
 import { useThree } from "@react-three/fiber";
 
 function App() {
@@ -27,6 +28,12 @@ function App() {
 
       <PerspectiveCamera makeDefault fov={33} position={[-0.09, 16.01, -27.9]} />
       <OrbitControls target={[0.304, 0.806, 0.427]} maxPolarAngle={Math.PI * 0.45} />
+
+      <Suspense fallback={null}>
+        <Scene />
+      </Suspense>
+
+    
     </>
   );
 }
