@@ -11,7 +11,7 @@ function App() {
   const state = useThree();
   
   useEffect(() => {
-    state.gl.toneMappingExposure = 5;
+    state.gl.toneMappingExposure = 4;
   }, [state.gl]);
 
   return (
